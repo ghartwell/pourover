@@ -3,13 +3,22 @@
 Make JSON API for calculating the water and coffee in grams for pour over
 """
 
+import argparse
 from flask import Flask
 from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 api = Api(app)
 
-waterToCoffeeRatio = 20
+cliparser = argparse.ArgumentParser(
+    prog='PourOver',
+    description='Water Ounces to grams and coffee grams',
+    formatter_class=argparse.RawDescriptionHelpFormatter
+)
+
+cliparser.add_argument("-r", "--ratio", type=int, required=False,
+                    help="Ratio of water to coffee override (Default: 20)")
+cliargs = cliparser.parse_args()
 
 
 def coffee_math(coffee_g):
@@ -50,4 +59,9 @@ class PourOver(Resource):
 api.add_resource(PourOver, "/pourover")
 
 if __name__ == '__main__':
+    if cliargs.ratio:
+        waterToCoffeeRatio = cliargs.ratio
+    else:
+        waterToCoffeeRatio = 20
+
     app.run(host='0.0.0.0')
