@@ -4,5 +4,5 @@
   - Flask
   - flask_restful
 
-## Modifing water to coffee ratio
-- pourover.py >> waterToCoffeeRatio = 20
+## Ratio override
+pourover.py --ratio ##
