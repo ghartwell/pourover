@@ -1,4 +1,4 @@
-#Pourover Coffee Micro Service
+# Pourover Coffee Micro Service
 -Docker compatible
 
 ## Modifing water to coffee ratio
